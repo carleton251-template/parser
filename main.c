@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "tokenizer.h"
-#include "value.h"
+#include "object.h"
 #include "linkedlist.h"
 #include "parser.h"
 #include "talloc.h"
@@ -10,8 +10,8 @@
 
 int main() {
 
-    Value *list = tokenize();
-    Value *tree = parse(list);
+    Object *list = tokenize();
+    Object *tree = parse(list);
 
     printTree(tree);
     printf("\n");

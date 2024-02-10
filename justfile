@@ -2,7 +2,7 @@
 USE_BINARIES := "no"
 
 SRCS := if USE_BINARIES == "yes" {
-	"lib/linkedlist.o lib/talloc.o lib/tokenizer.o main.c parser.c"
+	replace("lib/linkedlist.o lib/talloc.o lib/tokenizer.o main.c parser.c", ".o", "-"+arch()+".o")
 } else {
 	"linkedlist.c talloc.c main.c tokenizer.c parser.c"
 }
@@ -20,7 +20,7 @@ build:
 	rm -f vgcore.*
 
 compile target:
-	{{CC}} {{CFLAGS}} -c {{target}} -o {{trim_end_match(target, ".c")}}.o
+	{{CC}} {{CFLAGS}} -c {{target}} -o {{trim_end_match(target, ".c")}}-{{arch()}}.o
 
 clean:
 	-rm *.o
